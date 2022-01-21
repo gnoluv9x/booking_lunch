@@ -1,5 +1,5 @@
 import "./App.scss";
-import BookingLayout from "./components/Layout";
+import BookingLayout from "./layouts/Layout";
 
 function App() {
     return (

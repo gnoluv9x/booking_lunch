@@ -1,0 +1,22 @@
+.filter-heading {
+    color: #000000;
+    font-size: 14px;
+    line-height: calc(22 / 14);
+}
+.requirement {
+    &__filters {
+        &__searchBtn {
+            margin-top: 20px;
+        }
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    .ant-form-item-label {
+        padding: 0 !important;
+    }
+}

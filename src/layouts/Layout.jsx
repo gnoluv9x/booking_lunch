@@ -2,8 +2,8 @@ import { MenuFoldOutlined, MenuUnfoldOutlined, SmileTwoTone } from "@ant-design/
 import { Layout, Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import React, { useState } from "react";
-import RequiredmentList from "../features/RequirementList/RequiredmentList";
-import HeaderIcons from "./Header/Header";
+import RestaurantList from "../features/RestaurantList/RestaurantList";
+import HeaderIcons from "../components/Header/Header";
 import "./Layout.scss";
 
 const BookingLayout = props => {
@@ -51,7 +51,7 @@ const BookingLayout = props => {
                         height: "auto",
                     }}
                 >
-                    <RequiredmentList />
+                    <RestaurantList />
                 </Content>
             </Layout>
         </Layout>

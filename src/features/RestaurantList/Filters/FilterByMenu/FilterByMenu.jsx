@@ -1,23 +1,21 @@
-import { DatePicker, Form, Select } from "antd";
+import { Button, DatePicker, Form, Input, Select } from "antd";
 import React from "react";
-import "./FilterByRestaurant.scss";
-const { RangePicker } = DatePicker;
+import "./FilterByMenu.scss";
 
 const { Option } = Select;
-const FilterByRestaurant = () => {
+
+const FilterByMenu = () => {
     const [form] = Form.useForm();
+
     const onFinish = values => {
         console.log("Received values of form: ", values);
     };
 
-    const children = [];
-    for (let i = 10; i < 10; i++) {
-        console.log(i.toString(36) + i);
-        children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-    }
-    function handleChange(value) {
+    const listMenu = ["Bún bò", "Rau muống", "Thịt kho tàu", "Cơm"];
+
+    const handleChange = value => {
         console.log(`Selected: ${value}`);
-    }
+    };
 
     return (
         <Form
@@ -27,25 +25,28 @@ const FilterByRestaurant = () => {
             onFinish={onFinish}
         >
             <Form.Item
-                name="range-time-picker"
-                label="Quán ăn"
+                name="listMenu"
+                label="Thực đơn"
                 colon={false}
                 labelCol={{ span: 24 }}
                 style={{ fontWeight: 700 }}
             >
                 <Select
                     mode="tags"
-                    size={"default"}
-                    placeholder="Please select"
-                    defaultValue={["Quán 1", "Quán 2"]}
+                    style={{ width: "100%", fontWeight: 400 }}
+                    placeholder="Chọn món ăn"
                     onChange={handleChange}
-                    style={{ width: "100%" }}
+                    maxTagCount={3}
                 >
-                    {children}
+                    {listMenu.map((menu, idx) => (
+                        <Option key={idx} style={{ fontWeight: 400 }}>
+                            {menu}
+                        </Option>
+                    ))}
                 </Select>
             </Form.Item>
         </Form>
     );
 };
 
-export default FilterByRestaurant;
+export default FilterByMenu;

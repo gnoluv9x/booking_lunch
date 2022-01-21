@@ -1,7 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseApi = "localhost";
+const baseApi = "https://61e905fa7ced4a00172ff777.mockapi.io/";
 
 const axiosClient = axios.create({
     baseURL: baseApi,

@@ -19,6 +19,13 @@ function FilterByStatus(props) {
     function handleChange(value) {
         console.log(`Selected: ${value}`);
     }
+    function onChange(value) {
+        console.log(`selected ${value}`);
+    }
+
+    function onSearch(val) {
+        console.log("search:", val);
+    }
     return (
         <>
             <Form
@@ -28,21 +35,25 @@ function FilterByStatus(props) {
                 onFinish={onFinish}
             >
                 <Form.Item
-                    name="range-time-picker"
-                    label="Quán ăn"
+                    name="status"
+                    label="Trạng thái"
                     colon={false}
                     labelCol={{ span: 24 }}
                     style={{ fontWeight: 700 }}
                 >
                     <Select
-                        mode="tags"
-                        size={"default"}
-                        placeholder="Please select"
-                        defaultValue={["Quán 1", "Quán 2"]}
+                        showSearch
+                        style={{ fontWeight: 400 }}
+                        placeholder="Chọn một hoạt động"
+                        optionFilterProp="children"
                         onChange={handleChange}
-                        style={{ width: "100%" }}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
                     >
-                        {children}
+                        <Option value="active">Hoạt động</Option>
+                        <Option value="locking">Tạm khoá</Option>
                     </Select>
                 </Form.Item>
             </Form>
