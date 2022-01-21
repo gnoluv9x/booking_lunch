@@ -1,34 +1,47 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import queryString from "query-string";
-
-const baseApi = "https://61e905fa7ced4a00172ff777.mockapi.io/";
-
 const axiosClient = axios.create({
-    baseURL: baseApi,
+    baseURL: "http://localhost:8000",
     headers: {
         "content-type": "application/json",
     },
     paramsSerializer: params => queryString.stringify(params),
 });
-
-axiosClient.interceptors.request.use(async config => {
-    // Handle token here ...
-
-    return config;
-});
-
-axiosClient.interceptors.response.use(
-    response => {
-        if (response && response.data) {
-            return response.data;
+// interceptor
+axiosClient.interceptors.request.use(
+    function (config) {
+        //gắn token vào header của config
+        const customHeader = {};
+        const accessToken = Cookies.get("ACCESS_TOKEN"); // get token trong cookies
+        // nếu có token thì thêm thuộc tính authorization vào headers
+        if (accessToken) {
+            customHeader.Authorization = accessToken;
         }
-
-        return response;
+        return {
+            ...config,
+            headers: {
+                ...customHeader, //dùng destructuring để thêm config vào header
+                ...config.headers,
+            },
+        };
     },
-    error => {
-        // Handle errors
-        throw error;
+    function (error) {
+        return Promise.reject(error);
     }
 );
 
+axiosClient.interceptors.response.use(
+    function (response) {
+        console.log(response);
+        if (response.status === 200) {
+            Cookies.set("ACCESS_TOKEN", response.data.accessToken);
+        }
+        return response;
+    },
+    function (error) {
+        //nếu code ngoài 2xx thì return error
+        return Promise.reject(error);
+    }
+);
 export default axiosClient;

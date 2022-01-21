@@ -1,0 +1,70 @@
+.login {
+  &__left {
+    background: #1890ff;
+    opacity: 0.25;
+    height: 100vh;
+  }
+  &__main {
+    max-height: 100vh;
+    position: relative;
+    padding: 303px 196px 335px 153px;
+    color: #000;
+    .tab {
+      &__active {
+        margin-bottom: 14px;
+      }
+    }
+    .active {
+      background: #e79c45;
+      color: #fff;
+    }
+    .forgot-password {
+      cursor: pointer;
+      position: absolute;
+      top: 520px;
+      right: 200px;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__ldap {
+      border-top-left-radius: 4px;
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 5px 0;
+      transition: all 0.3s linear;
+      cursor: pointer;
+    }
+    &__internal {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 5px 0;
+      border-top-right-radius: 4px;
+      transition: all 0.3s linear;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .login__main {
+    padding: 40% 20px;
+  }
+}
+
+@media (max-width: 414px) {
+  .login__main {
+    padding: 200px 20px;
+    width: 100vw;
+    .forgot-password {
+      top: 420px;
+      left: 260px;
+      width: 102px;
+    }
+    .forgot-password a {
+      width: 102px;
+    }
+  }
+}
