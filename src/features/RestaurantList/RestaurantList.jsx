@@ -8,7 +8,6 @@ import FilterByStatus from "./Filters/FilterByStatus/FilterByStatus";
 import RestaurantTable from "./Table/RestaurantTable";
 import "./RestaurantList.scss";
 import RestaurantApi from "../../api/apiRestaurant";
-import { unwrapResult } from "@reduxjs/toolkit";
 import Loading from "../../components/Loading/Loading";
 
 function RestaurantList(props) {
