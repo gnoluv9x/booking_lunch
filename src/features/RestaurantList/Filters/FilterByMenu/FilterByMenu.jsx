@@ -1,11 +1,13 @@
 import { Form, Select } from "antd";
 import React from "react";
+import { useGlobalContext } from "../../../../Context/ListDishContext";
 import "./FilterByMenu.scss";
 
 const { Option } = Select;
 
 const FilterByMenu = props => {
     const [form] = Form.useForm();
+    const { listDish, setListDish } = useGlobalContext();
 
     const onFinish = values => {
         console.log("Received values of form: ", values);
@@ -38,7 +40,7 @@ const FilterByMenu = props => {
                     onChange={handleChange}
                     maxTagCount={3}
                 >
-                    {listMenu.map((menu, idx) => (
+                    {listDish.map((menu, idx) => (
                         <Option key={idx} style={{ fontWeight: 400 }}>
                             {menu}
                         </Option>

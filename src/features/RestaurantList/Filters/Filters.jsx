@@ -4,7 +4,7 @@ import FilterByMenu from "./FilterByMenu/FilterByMenu";
 import FilterBySearch from "./FilterBySearch/FilterBySearch";
 import FilterByStatus from "./FilterByStatus/FilterByStatus";
 
-function Filters({ onFilterChange, filters, listDish }) {
+function Filters({ onFilterChange, filters }) {
     const handleFiltersStatus = values => {
         if (!onFilterChange) return;
 

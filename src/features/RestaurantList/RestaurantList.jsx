@@ -1,20 +1,18 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Row } from "antd";
+import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import RestaurantApi from "../../api/apiRestaurant";
 import Loading from "../../components/Loading/Loading";
-import RestaurantForm from "./RestaurantForm/RestaurantForm";
-import RestaurantTable from "./Table/RestaurantTable";
 import Filters from "./Filters/Filters";
-import queryString from "query-string";
+import RestaurantForm from "./RestaurantForm/RestaurantForm";
 import "./RestaurantList.scss";
-import Item from "antd/lib/list/Item";
-
+import RestaurantTable from "./Table/RestaurantTable";
+import { useGlobalContext } from "../../Context/ListDishContext";
 function RestaurantList(props) {
     const [visible, setVisible] = useState(false);
-    const [listRestaurant, setListRestaurant] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [listDish, setListDish] = useState([]);
+    const { listRestaurant, setListRestaurant, listDish, setListDish } = useGlobalContext();
 
     const handleVisible = status => {
         setVisible(status);
@@ -74,11 +72,7 @@ function RestaurantList(props) {
         <section className="requirement">
             <Row span={24} gutter={24} className="requirement__filters">
                 <Col span={15}>
-                    <Filters
-                        onFilterChange={handleFiltersChange}
-                        filters={listFilters}
-                        listDish={listDish}
-                    />
+                    <Filters onFilterChange={handleFiltersChange} filters={listFilters} />
                 </Col>
                 <Col span={4} offset={5} className="requirement__filters__searchBtn">
                     <Button
