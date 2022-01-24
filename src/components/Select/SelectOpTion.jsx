@@ -8,7 +8,7 @@ function SelectOption({ listData, placeholder }) {
 
     const children = [];
     listData.forEach((item, idx) => {
-        children.push(<Option key={idx}>{item}</Option>);
+        children.push(<Option value={item} key={idx}>{item}</Option>);
     });
 
     function handleChange(value) {

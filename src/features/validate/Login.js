@@ -43,16 +43,6 @@ const Login = () => {
         }
       : null;
 
-  const buttonItemLayout =
-    formLayout === "horizontal"
-      ? {
-          wrapperCol: {
-            span: 14,
-            offset: 4,
-          },
-        }
-      : null;
-
   return (
     <Row className="container__layout login">
       <Col sm={0} xl={12}>
