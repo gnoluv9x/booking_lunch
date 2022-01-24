@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import userApi from "../../api/userApi";
 import "./sass/_Login.scss";
+import base64 from "base-64";
+import utf8 from "utf8";
 const Login = () => {
   const [isActive, setIsActive] = useState(false);
   const [form] = Form.useForm();
@@ -14,7 +16,11 @@ const Login = () => {
   };
   const onFinish = async (value) => {
     delete value["remember"];
-    const result = await userApi.login(value);
+    const { username, password } = value;
+    const bytes = utf8.encode(password);
+    const encoded = base64.encode(bytes);
+    const result = await userApi.login({ username, password: encoded });
+    console.log({ username, password: encoded });
   };
   const formItemLayout =
     formLayout === "horizontal"

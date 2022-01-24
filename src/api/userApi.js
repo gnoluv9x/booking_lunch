@@ -5,7 +5,7 @@ const userApi = {
     return axiosClient.post(url, data);
   },
   login(data) {
-    const url = "/login";
+    const url = "/auth/login";
     return axiosClient.post(url, data);
   },
   forgotPassword(data) {
