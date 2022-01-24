@@ -1,53 +1,41 @@
-import { Form, Select } from "antd";
+import { Form, Select, Typography } from "antd";
 import React from "react";
 import { useGlobalContext } from "../../../../Context/ListDishContext";
 import "./FilterByMenu.scss";
 
 const { Option } = Select;
+const { Text } = Typography;
 
-const FilterByMenu = props => {
-    const [form] = Form.useForm();
-    const { listDish, setListDish } = useGlobalContext();
-
-    const onFinish = values => {
-        console.log("Received values of form: ", values);
-    };
-
-    const listMenu = ["Bún bò", "Rau muống", "Thịt kho tàu", "Cơm"];
+const FilterByMenu = ({ onChangeMenu }) => {
+    const { listDish } = useGlobalContext();
 
     const handleChange = value => {
-        console.log(`Selected: ${value}`);
+        const listChoosedDish = [];
+        Object.keys(value).forEach(item => {
+            listChoosedDish.push(listDish[item]);
+        });
+        onChangeMenu(listChoosedDish);
     };
 
     return (
-        <Form
-            form={form}
-            name="advanced_search"
-            className="ant-advanced-search-form filter-heading"
-            onFinish={onFinish}
-        >
-            <Form.Item
-                name="listMenu"
-                label="Thực đơn"
-                colon={false}
-                labelCol={{ span: 24 }}
-                style={{ fontWeight: 700 }}
+        <>
+            <Text strong className="filterByStatus__title">
+                Thực đơn
+            </Text>
+            <Select
+                mode="tags"
+                style={{ width: "100%", fontWeight: 400 }}
+                placeholder="Chọn món ăn"
+                onChange={handleChange}
+                maxTagCount={3}
             >
-                <Select
-                    mode="tags"
-                    style={{ width: "100%", fontWeight: 400 }}
-                    placeholder="Chọn món ăn"
-                    onChange={handleChange}
-                    maxTagCount={3}
-                >
-                    {listDish.map((menu, idx) => (
-                        <Option key={idx} style={{ fontWeight: 400 }}>
-                            {menu}
-                        </Option>
-                    ))}
-                </Select>
-            </Form.Item>
-        </Form>
+                {listDish.map((menu, idx) => (
+                    <Option key={idx} style={{ fontWeight: 400 }}>
+                        {menu}
+                    </Option>
+                ))}
+            </Select>
+        </>
     );
 };
 

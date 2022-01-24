@@ -21,7 +21,7 @@ function RestaurantList(props) {
     const [listFilters, setListFilters] = useState({
         status: null,
         listmenu: [],
-        search: "",
+        q: "",
     });
 
     const handleFiltersChange = values => {
@@ -51,19 +51,18 @@ function RestaurantList(props) {
     }, []);
 
     useEffect(() => {
-        console.log(queryString.stringify(listFilters, { arrayFormat: "none" }));
-        // async function fetchRestaurantListFiltered() {
-        //     try {
-        //         const { data, status } = await RestaurantApi.get;
-        //         if (status === 200) {
-        //             setListRestaurant(data);
-        //             setLoading(false);
-        //         }
-        //     } catch (error) {
-        //         throw new Error("Fail to fetch list of restaurants");
-        //     }
-        // }
-        // fetchRestaurantListFiltered();
+        const params = queryString.stringify(listFilters, { arrayFormat: "none" });
+        async function fetchFilterListDish() {
+            try {
+                const { data, status } = await RestaurantApi.getByFilter(params);
+                if (status === 200) {
+                    setListRestaurant(data);
+                }
+            } catch (error) {
+                throw new Error("Fail to fetch filterd restaurant");
+            }
+        }
+        fetchFilterListDish();
     }, [listFilters]);
 
     return loading ? (

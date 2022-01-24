@@ -1,4 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, ReconciliationFilled } from "@ant-design/icons";
 import { Button, Row, Table } from "antd";
 import React, { useState } from "react";
 import SelecMulti from "../../Select/SelecMulti";
@@ -49,15 +49,28 @@ function AddCoupleDish(props) {
             dataIndex: "main",
             key: "main",
             width: "20%",
-            render: main => <SelectOption listData={main} placeholder={"Món chính"} />,
+            render: (main, record) => {
+                return (
+                    <SelectOption
+                        selectKey={record.key}
+                        listData={main}
+                        placeholder={"Món chính"}
+                    />
+                );
+            },
         },
         {
             title: "Món phụ",
             dataIndex: "sub",
             key: "sub",
             width: "60%",
-            render: sub => (
-                <SelecMulti span={10} listData={sub} placeholder={"Vui lòng chọn món phụ"} />
+            render: (sub, record) => (
+                <SelecMulti
+                    span={10}
+                    selectKey={record.key}
+                    listData={sub}
+                    placeholder={"Vui lòng chọn món phụ"}
+                />
             ),
         },
         {

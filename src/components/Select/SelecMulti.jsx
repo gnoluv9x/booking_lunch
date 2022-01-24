@@ -3,14 +3,19 @@ import React from "react";
 
 const { Option } = Select;
 
-function SelecMulti({ listData, placeholder }) {
+function SelecMulti({ listData, placeholder, selectKey }) {
     const children = [];
     listData.forEach((item, idx) => {
-        children.push(<Option key={idx} value={item}>{item}</Option>);
+        children.push(
+            <Option key={idx} value={item}>
+                {item}
+            </Option>
+        );
     });
 
     function handleChange(value) {
         console.log(`Selected: ${value}`);
+        console.log(`Selected: ${selectKey}`);
     }
     return (
         <Select

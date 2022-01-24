@@ -12,7 +12,7 @@ const RestaurantApi = {
         return axiosClient.get(url);
     },
     getByFilter: filters => {
-        const url = `/${routes}/${filters}`;
+        const url = `/${routes}?${filters}`;
         return axiosClient.get(url);
     },
     addRestaurant: data => {

@@ -16,13 +16,21 @@ function Filters({ onFilterChange, filters }) {
     const handleFiltersMenu = values => {
         if (!onFilterChange) return;
 
-        console.log(values);
+        onFilterChange({
+            ...filters,
+            listmenu: [...values],
+        });
     };
+
     const handleFiltersSearch = values => {
         if (!onFilterChange) return;
 
-        console.log(values);
+        onFilterChange({
+            ...filters,
+            q: values,
+        });
     };
+
     console.log("filters : ", filters);
     return (
         <Row span={24} gutter={24}>

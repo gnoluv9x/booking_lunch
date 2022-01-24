@@ -94,7 +94,7 @@ function RestaurantTable({ listRestaurant, onChange }) {
                 pagination={{
                     showQuickJumper: true,
                     defaultCurrent: DEFAULT_PAGE,
-                    total: 40,
+                    total: listRestaurant.length,
                     pageSize: LIMIT_PAGE,
                     // showSizeChanger: true,
                     // pageSizeOptions: ["10", "15"],

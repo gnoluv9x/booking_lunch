@@ -1,35 +1,22 @@
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, Select, Typography } from "antd";
 import { Option } from "antd/lib/mentions";
 import React from "react";
 import "./FilterBySearch.scss";
 
-FilterBySearch.propTypes = {};
+const { Text } = Typography;
 
-function FilterBySearch(props) {
-    const [form] = Form.useForm();
-
+function FilterBySearch({ onChangeSearch }) {
     const onFinish = e => {
-        console.log("Received values of form: ", e.target.value);
+        const searchValue = e.target.value;
+        onChangeSearch(searchValue);
     };
 
     return (
         <>
-            <Form
-                form={form}
-                name="advanced_search"
-                className="ant-advanced-search-form filter-heading"
-                onFinish={onFinish}
-            >
-                <Form.Item
-                    name="search"
-                    label="Tìm kiếm"
-                    colon={false}
-                    labelCol={{ span: 24 }}
-                    style={{ fontWeight: 700 }}
-                >
-                    <Input onChange={onFinish} placeholder="Tên, địa chỉ, số điện thoại" />
-                </Form.Item>
-            </Form>
+            <Text strong className="filterByStatus__title">
+                Tìm kiếm
+            </Text>
+            <Input onChange={onFinish} placeholder="Tên, địa chỉ, số điện thoại" />
         </>
     );
 }
