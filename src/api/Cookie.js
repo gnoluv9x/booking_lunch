@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+
 export function getToken(TokenKey = "Auth-Token") {
     return Cookies.get(TokenKey);
 }

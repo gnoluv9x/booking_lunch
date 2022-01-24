@@ -1,14 +1,19 @@
-import { Button, Form, Input, Select, Typography } from "antd";
-import { Option } from "antd/lib/mentions";
+import { Input, Typography } from "antd";
 import React from "react";
 import "./FilterBySearch.scss";
 
 const { Text } = Typography;
 
 function FilterBySearch({ onChangeSearch }) {
+    let filterTimeout;
+
     const onFinish = e => {
-        const searchValue = e.target.value;
-        onChangeSearch(searchValue);
+        clearTimeout(filterTimeout);
+
+        filterTimeout = setTimeout(() => {
+            const searchValue = e.target.value;
+            onChangeSearch(searchValue);
+        }, 500);
     };
 
     return (

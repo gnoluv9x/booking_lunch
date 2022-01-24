@@ -51,6 +51,12 @@ function RestaurantList(props) {
     }, []);
 
     useEffect(() => {
+        const newFilters = {};
+        Object.keys(listFilters).forEach(item => {
+            if (!!item) {
+                newFilters.item = listFilters[item];
+            }
+        });
         const params = queryString.stringify(listFilters, { arrayFormat: "none" });
         async function fetchFilterListDish() {
             try {
