@@ -3,6 +3,7 @@ import { UserOutlined, LockTwoTone } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./sass/_Login.scss";
+import userApi from "../../api/userApi";
 const RePassword = () => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
@@ -11,7 +12,7 @@ const RePassword = () => {
     setFormLayout(layout);
   };
   const onFinish = (value) => {
-    console.log("value", value);
+    userApi.retypePassword(value);
   };
   const formItemLayout =
     formLayout === "horizontal"
