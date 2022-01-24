@@ -1,6 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import queryString from "query-string";
+import { DEFAULT_URL } from "../common/baseURL";
+
 const axiosClient = axios.create({
   baseURL: "https://json-server-booking-lunch.herokuapp.com/",
   headers: {
@@ -8,6 +10,7 @@ const axiosClient = axios.create({
   },
   paramsSerializer: (params) => queryString.stringify(params),
 });
+
 // interceptor
 axiosClient.interceptors.request.use(
   function (config) {

@@ -1,6 +1,7 @@
 import { Row, Space, Table, Tag } from "antd";
 import Text from "antd/lib/typography/Text";
 import React from "react";
+import { DEFAULT_PAGE, LIMIT_PAGE } from "../../../common/paginate";
 
 function removeKeyObj(obj, old_key, new_key) {
     if (old_key !== new_key) {
@@ -10,13 +11,13 @@ function removeKeyObj(obj, old_key, new_key) {
     return obj;
 }
 
-function RestaurantTable({ listRestaurant }) {
-    console.log("Restaurant from : ", listRestaurant);
+function RestaurantTable({ listRestaurant, onChange }) {
     const columns = [
         {
             title: "Tên quán ăn",
             dataIndex: "restaurantName",
             key: "restaurantName",
+            width: "10%",
             render: text => <a href="#!">{text}</a>,
         },
         {
@@ -28,6 +29,7 @@ function RestaurantTable({ listRestaurant }) {
             title: "Liên hệ",
             dataIndex: "phoneNumber",
             key: "phoneNumber",
+            width: "12%",
         },
         {
             title: "Thực đơn",
@@ -64,55 +66,16 @@ function RestaurantTable({ listRestaurant }) {
         },
     ];
 
-    const data = [
-        {
-            restaurantName: "restaurantName 1",
-            phoneNumber: 43,
-            status: false,
-            address: "address 1",
-            setName: ["bún bò", "cơm rang", "rau muống", "cơm"],
-            restaurantId: "1",
-        },
-        {
-            restaurantId: "1",
-            restaurantName: "Long Vu",
-            address: "Quán 1",
-            setName: ["Bún bò", "Rau muống", "Cơm", "Thịt kho tàu", "Cá tầm sốt thái"],
-            address: "New York No. 1 Lake Park",
-            status: true,
-            phoneNumber: "0977984535",
-        },
-        {
-            restaurantId: "2",
-            name: "Manh Kien",
-            restaurant: "Quán 4",
-            menu: ["Bún bò", "Rau muống"],
-            quantity: 32,
-            address: "New York No. 1 Lake Park",
-            status: "Hoạt động",
-            contact: "0977984535",
-        },
-        {
-            restaurantId: "3",
-            name: "Van Hoc",
-            restaurant: "Quán 3",
-            menu: ["Bún bò", "Rau muống", "Cơm"],
-            quantity: 32,
-            address: "New York No. 1 Lake Park",
-            status: "Tạm khoá",
-            contact: "0977984535",
-        },
-        {
-            restaurantId: "4",
-            name: "La Duc",
-            restaurant: "Quán 2",
-            menu: ["Cơm", "Thịt kho tàu", "Cá tầm sốt thái"],
-            quantity: 32,
-            address: "New York No. 1 Lake Park",
-            status: "Tạm khoá",
-            contact: "0977984535",
-        },
-    ];
+    // const data = [
+    //     {
+    //         restaurantName: "restaurantName 1",
+    //         phoneNumber: 43,
+    //         status: false,
+    //         address: "address 1",
+    //         setName: ["bún bò", "cơm rang", "rau muống", "cơm"],
+    //         restaurantId: "1",
+    //     },
+    // ];
 
     let newData = [];
     if (listRestaurant.length > 0) {
@@ -128,7 +91,16 @@ function RestaurantTable({ listRestaurant }) {
                 columns={columns}
                 dataSource={newData}
                 style={{ width: "100%" }}
-                pagination={false}
+                pagination={{
+                    showQuickJumper: true,
+                    defaultCurrent: DEFAULT_PAGE,
+                    total: 40,
+                    pageSize: LIMIT_PAGE,
+                    // showSizeChanger: true,
+                    // pageSizeOptions: ["10", "15"],
+                    onChange: onChange,
+                    hideOnSinglePage: true,
+                }}
             />
         </Row>
     );

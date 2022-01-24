@@ -1,20 +1,22 @@
 import axiosClient from "./axiosClient";
 
+const routes = "restaurants";
+
 const RestaurantApi = {
     getAll: () => {
-        const url = "/restaurants";
+        const url = `/${routes}`;
         return axiosClient.get(url);
     },
     getByStatus: status => {
-        const url = `/restaurants/status/${status}`;
+        const url = `/${routes}/${status}`;
         return axiosClient.get(url);
     },
-    getByName: value => {
-        const url = `/restaurants/name/:${value}`;
+    getByFilter: filters => {
+        const url = `/${routes}/${filters}`;
         return axiosClient.get(url);
     },
     addRestaurant: data => {
-        const url = `/restaurants`;
+        const url = `/${routes}`;
         return axiosClient.post(url, data);
     },
 };

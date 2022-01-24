@@ -1,10 +1,10 @@
-import { Button, DatePicker, Form, Input, Select } from "antd";
+import { Form, Select } from "antd";
 import React from "react";
 import "./FilterByMenu.scss";
 
 const { Option } = Select;
 
-const FilterByMenu = () => {
+const FilterByMenu = props => {
     const [form] = Form.useForm();
 
     const onFinish = values => {

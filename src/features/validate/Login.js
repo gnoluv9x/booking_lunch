@@ -1,7 +1,7 @@
 import { LockTwoTone, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import userApi from "../../api/userApi";
 import "./sass/_Login.scss";
 import base64 from "base-64";
@@ -33,6 +33,16 @@ const Login = () => {
           },
         }
       : null;
+  const buttonItemLayout =
+    formLayout === "horizontal"
+      ? {
+          wrapperCol: {
+            span: 14,
+            offset: 4,
+          },
+        }
+      : null;
+
   const buttonItemLayout =
     formLayout === "horizontal"
       ? {
