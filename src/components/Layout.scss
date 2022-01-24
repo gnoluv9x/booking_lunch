@@ -78,3 +78,13 @@
     padding-left: 24px;
     padding-right: 24px;
 }
+.def-layout{
+    max-width: 100%;
+    .filter__date{
+        width: 248px;
+    }
+    .pagination-order{
+        margin-top: 20px !important;
+        margin-bottom: 20px ;
+    }
+}

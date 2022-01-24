@@ -1,4 +1,23 @@
+@import './assets/scss/responsive.scss';
+
+
 .App {
     margin: 0 auto;
     width: 100%;
+    overflow-x: hidden;
 }
+.flex-box{
+    display: flex;
+    flex-wrap: wrap;
+}
+.justify-end{
+    justify-content: flex-end;
+}
+.ant-form-item{
+    margin-bottom: 10px !important;
+}
+
+.order-drawer .ant-drawer-body{
+    padding: 5px;
+}
+

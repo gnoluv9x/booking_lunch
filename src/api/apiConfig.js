@@ -1,7 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseApi = "localhost";
+let baseApi = "http://localhost:3001";
 
 const axiosClient = axios.create({
     baseURL: baseApi,
@@ -13,7 +13,8 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(async config => {
     // Handle token here ...
-
+    let token = localStorage.getItem("token")
+    config.headers = { Authorization: `Bearer ${token}` }
     return config;
 });
 
