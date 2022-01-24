@@ -1,6 +1,7 @@
 import { Select } from "antd";
-import { Option } from "antd/lib/mentions";
 import React from "react";
+
+const { Option } = Select;
 
 function SelecMulti({ listData, placeholder }) {
     const children = [];

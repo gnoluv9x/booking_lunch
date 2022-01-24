@@ -1,13 +1,16 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import queryString from "query-string";
+import { DEFAULT_URL } from "../common/baseURL";
+
 const axiosClient = axios.create({
-    baseURL: "http://localhost:8000",
+    baseURL: DEFAULT_URL,
     headers: {
         "content-type": "application/json",
     },
     paramsSerializer: params => queryString.stringify(params),
 });
+
 // interceptor
 axiosClient.interceptors.request.use(
     function (config) {

@@ -9,10 +9,12 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
-                <Route path="/repassword" element={<RePassword />}></Route>
-                <Route path="/restaurant" element={<BookingLayout />}></Route>
+                <Route path="/" element={<Login />}>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/forgotpassword" element={<ForgotPassword />} />
+                    <Route path="/repassword" element={<RePassword />} />
+                </Route>
+                <Route path="/restaurant" element={<BookingLayout />} />
             </Routes>
         </div>
     );
