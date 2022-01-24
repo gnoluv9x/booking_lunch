@@ -2,6 +2,7 @@ import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import { UserOutlined, LockTwoTone } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import userApi from "../../api/userApi";
 const ForgotPassword = () => {
   const [isActive, setIsActive] = useState(false);
   const [form] = Form.useForm();
@@ -9,6 +10,9 @@ const ForgotPassword = () => {
 
   const onFormLayoutChange = ({ layout }) => {
     setFormLayout(layout);
+  };
+  const onFinish = (value) => {
+    userApi.forgotPassword(value);
   };
 
   const formItemLayout =
@@ -64,6 +68,7 @@ const ForgotPassword = () => {
                 layout: formLayout,
                 remember: true,
               }}
+              onFinish={onFinish}
             >
               <Form.Item
                 wrapperCol={{

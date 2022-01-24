@@ -9,6 +9,9 @@ const AddRestaurantForm = ({ visible, onCreate, onCancel, title }) => {
     const handleFormData = values => {
         console.log(values);
     };
+    const onFinish =(value)=>{
+        console.log(value);
+    }
     return (
         <Modal
             visible={visible}
@@ -35,6 +38,7 @@ const AddRestaurantForm = ({ visible, onCreate, onCancel, title }) => {
                 initialValues={{
                     status: "active",
                 }}
+                onFinish={onFinish}
             >
                 <Form.Item
                     name="name"

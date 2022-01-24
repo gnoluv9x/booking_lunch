@@ -3,6 +3,9 @@ import { UserOutlined, LockTwoTone } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./sass/_Login.scss";
+import userApi from "../../api/userApi";
+import base64 from "base-64";
+import utf8 from "utf8";
 const RePassword = () => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
@@ -11,7 +14,10 @@ const RePassword = () => {
     setFormLayout(layout);
   };
   const onFinish = (value) => {
-    console.log("value", value);
+    const { password } = value;
+    const bytes = utf8.encode(password);
+    const encoded = base64.encode(bytes);
+    userApi.retypePassword(encoded);
   };
   const formItemLayout =
     formLayout === "horizontal"
@@ -74,7 +80,7 @@ const RePassword = () => {
               wrapperCol={{
                 span: 24,
               }}
-              name="confirm password"
+              name="confirmpassword"
               dependencies={["password"]}
               rules={[
                 {

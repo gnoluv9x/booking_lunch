@@ -6,7 +6,7 @@ const { Option } = Select;
 function SelecMulti({ listData, placeholder }) {
     const children = [];
     listData.forEach((item, idx) => {
-        children.push(<Option key={idx}>{item}</Option>);
+        children.push(<Option key={idx} value={item}>{item}</Option>);
     });
 
     function handleChange(value) {
